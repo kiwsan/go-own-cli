@@ -1,49 +1,44 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
-	"sort"
+	"strings"
 
 	"github.com/urfave/cli"
 )
 
-func main() {
-	app := cli.NewApp()
+var app = cli.NewApp()
 
-	app.Flags = []cli.Flag{
-		cli.StringFlag{
-			Name:  "lang, l",
-			Value: "english",
-			Usage: "Language for the greeting",
-		},
-		cli.StringFlag{
-			Name:  "config, c",
-			Usage: "Load configuration from `FILE`",
-		},
-	}
+var message = []string{"Hello world."}
 
+func info() {
+	app.Name = "Own CLI"
+	app.Usage = "An example CLI"
+	app.Author = "kiwsan"
+	app.Version = "1.0.0"
+}
+
+func commands() {
 	app.Commands = []cli.Command{
 		{
-			Name:    "complete",
-			Aliases: []string{"c"},
-			Usage:   "complete a task on the list",
-			Action: func(c *cli.Context) error {
-				return nil
-			},
-		},
-		{
-			Name:    "add",
-			Aliases: []string{"a"},
-			Usage:   "add a task to the list",
-			Action: func(c *cli.Context) error {
-				return nil
+			Name:    "products",
+			Aliases: []string{"p"},
+			Usage:   "Show products",
+			Action: func(c *cli.Context) {
+				pe := "products"
+				products := append(message, pe)
+				m := strings.Join(products, " ")
+				fmt.Println(m)
 			},
 		},
 	}
+}
 
-	sort.Sort(cli.FlagsByName(app.Flags))
-	sort.Sort(cli.CommandsByName(app.Commands))
+func main() {
+	info()
+	commands()
 
 	err := app.Run(os.Args)
 	if err != nil {
