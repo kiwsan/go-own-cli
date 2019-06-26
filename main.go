@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 
 	"github.com/urfave/cli"
 )
@@ -23,14 +22,75 @@ func info() {
 func commands() {
 	app.Commands = []cli.Command{
 		{
-			Name:    "products",
-			Aliases: []string{"p"},
-			Usage:   "Show products",
-			Action: func(c *cli.Context) {
-				pe := "products"
-				products := append(message, pe)
-				m := strings.Join(products, " ")
-				fmt.Println(m)
+			Name:        "product",
+			Aliases:     []string{"p"},
+			Usage:       "use it to see a description",
+			Description: "This product provider",
+			Subcommands: []cli.Command{
+				{
+					Name:        "list",
+					Aliases:     []string{"ls"},
+					Usage:       "display products list",
+					Description: " ",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "name",
+							Value: "",
+							Usage: "Name of the product to show",
+						},
+					},
+					Action: func(c *cli.Context) error {
+						if c.String("name") == "" {
+							fmt.Println("Out of store.")
+						} else {
+							fmt.Println("This is,", c.String("name"))
+						}
+
+						return nil
+					},
+				},
+			},
+		},
+		{
+			Name:        "cart",
+			Aliases:     []string{"c"},
+			Usage:       "use it to see a description",
+			Description: "This cart provider",
+			Action: func(c *cli.Context) error {
+
+				fmt.Println("My cart.")
+
+				return nil
+			},
+		},
+		{
+			Name:        "order",
+			Aliases:     []string{"r"},
+			Usage:       "use it to see a description",
+			Description: "This order provider",
+			Subcommands: []cli.Command{
+				{
+					Name:        "list",
+					Aliases:     []string{"ls"},
+					Usage:       "display orders list",
+					Description: " ",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "id",
+							Value: "",
+							Usage: "id of the order to show",
+						},
+					},
+					Action: func(c *cli.Context) error {
+						if c.String("id") == "" {
+							fmt.Println("Empty!")
+						} else {
+							fmt.Println("This is,", c.String("id"))
+						}
+
+						return nil
+					},
+				},
 			},
 		},
 	}
