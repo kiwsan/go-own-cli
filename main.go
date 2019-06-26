@@ -24,7 +24,7 @@ func commands() {
 		{
 			Name:        "product",
 			Aliases:     []string{"p"},
-			Usage:       "use it to see a description",
+			Usage:       "Shows a list of products or help for a product",
 			Description: "This product provider",
 			Subcommands: []cli.Command{
 				{
@@ -54,7 +54,7 @@ func commands() {
 		{
 			Name:        "cart",
 			Aliases:     []string{"c"},
-			Usage:       "use it to see a description",
+			Usage:       "Shows a cart",
 			Description: "This cart provider",
 			Action: func(c *cli.Context) error {
 
@@ -66,7 +66,7 @@ func commands() {
 		{
 			Name:        "order",
 			Aliases:     []string{"r"},
-			Usage:       "use it to see a description",
+			Usage:       "Shows a list of orders or help for an order",
 			Description: "This order provider",
 			Subcommands: []cli.Command{
 				{
