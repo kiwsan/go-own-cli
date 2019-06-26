@@ -1,4 +1,4 @@
-﻿# Own CLI
+﻿# The Own CLI
 
 This is an example for building command line apps in Go.
 
