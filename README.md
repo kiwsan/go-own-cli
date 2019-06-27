@@ -2,7 +2,7 @@
 
 This is an example for building command line apps in Go.
 
-## Used the cli library
+## Use the cli library
 
 [Getting started](https://github.com/urfave/cli#getting-started)
 
