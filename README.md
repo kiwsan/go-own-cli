@@ -16,7 +16,7 @@ This is an example for building command line apps in Go.
 
     $ go build
 
-### Run our CLI on Linux or macOS
+### Run our CLI on Linux
 
     $ ./go-own-cli --help
 
